@@ -25,6 +25,12 @@ import java.util.Date;
     boolean isOldNote = false;
 
 
+     @Override
+     public void onBackPressed() {
+         Intent intent = new Intent(NotesTakerActivity.this, MainActivity.class);
+         intent.putExtra("notes", notes);
+         NotesTakerActivity.this.startActivity(intent);
+     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +51,7 @@ import java.util.Date;
         }catch (Exception e){
             e.printStackTrace();
         }
+
 
 
         imageView_save.setOnClickListener(new View.OnClickListener() {
@@ -92,10 +99,15 @@ import java.util.Date;
                 });
                 builder.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(NotesTakerActivity.this, MainActivity.class);
+                        intent.putExtra("notes", notes);
+                        NotesTakerActivity.this.startActivity(intent);
                     }
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
+
+
 
 
 
